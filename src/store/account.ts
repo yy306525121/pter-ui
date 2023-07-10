@@ -33,9 +33,10 @@ export const useAccountStore = defineStore('account', {
       return http
         .request<TokenResult, Response<TokenResult>>('/login', 'post_json', { username, password })
         .then(async (response) => {
+          debugger
           if (response.code === 0) {
             this.logged = true;
-            http.setAuthorization(`Bearer ${response.data.token}`, new Date(response.data.expires));
+            // http.setAuthorization(`Bearer ${response.data.token}`, new Date(response.data.expires));
             await useMenuStore().getMenuList();
             return response.data;
           } else {

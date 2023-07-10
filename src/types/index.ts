@@ -10,5 +10,6 @@ export interface Response<T = never> {
 }
 
 export function isResponse(obj: any): obj is Response<any> {
-  return typeof obj === 'object' && obj.message !== undefined && obj.code !== undefined;
+  debugger
+  return typeof obj === 'object' && obj.message !== 'success' && obj.code !== 1;
 }

@@ -1,5 +1,5 @@
 import Mock from 'mockjs';
-import './account';
+// import './account';
 import './menu';
 
 Mock.setup({
