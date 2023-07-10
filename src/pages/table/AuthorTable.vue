@@ -24,7 +24,7 @@
     department?: string;
     jobs?: string;
     position?: string[];
-    role?: string;
+    roles?: string[];
     status?: number;
     time?: Dayjs;
     _edit?: boolean;

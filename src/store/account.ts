@@ -5,11 +5,11 @@ import { useMenuStore } from './menu';
 import { useAuthStore } from '@/plugins';
 
 export interface Profile {
-  account: Account;
+  user: User;
   permissions: string[];
-  role: string;
+  roles: string[];
 }
-export interface Account {
+export interface User {
   username: string;
   avatar: string;
   gender: number;
@@ -22,9 +22,9 @@ export type TokenResult = {
 export const useAccountStore = defineStore('account', {
   state() {
     return {
-      account: {} as Account,
+      user: {} as User,
       permissions: [] as string[],
-      role: '',
+      roles: '',
       logged: true,
     };
   },
@@ -36,7 +36,7 @@ export const useAccountStore = defineStore('account', {
           debugger
           if (response.code === 0) {
             this.logged = true;
-            // http.setAuthorization(`Bearer ${response.data.token}`, new Date(response.data.expires));
+            http.setAuthorization(`Bearer ${response.data.token}`, new Date(response.data.expires));
             await useMenuStore().getMenuList();
             return response.data;
           } else {
@@ -53,13 +53,13 @@ export const useAccountStore = defineStore('account', {
       });
     },
     async profile() {
-      return http.request<Account, Response<Profile>>('/account', 'get').then((response) => {
+      return http.request<User, Response<Profile>>('/info', 'get').then((response) => {
         if (response.code === 0) {
           const { setAuthorities } = useAuthStore();
-          const { account, permissions, role } = response.data;
-          this.account = account;
+          const { user, permissions, roles } = response.data;
+          this.user = user;
           this.permissions = permissions;
-          this.role = role;
+          this.roles = roles;
           setAuthorities(permissions);
           return response.data;
         } else {

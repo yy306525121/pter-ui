@@ -71,6 +71,7 @@
     accountStore
       .login(params.username, params.password)
       .then((res) => {
+
         emit('success', params);
       })
       .catch((e) => {

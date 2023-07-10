@@ -4,12 +4,12 @@ export interface LoginForm {
 }
 
 export interface Response<T = never> {
-  message: string;
+  msg: string;
   code: number;
   data: T;
 }
 
 export function isResponse(obj: any): obj is Response<any> {
   debugger
-  return typeof obj === 'object' && obj.message !== 'success' && obj.code !== 1;
+  return typeof obj === 'object' && obj.msg === 'success' && obj.code !== 1;
 }
