@@ -8,7 +8,7 @@ import { configCompressPlugin } from "./compress";
 import { visualizer } from "rollup-plugin-visualizer";
 import removeConsole from "vite-plugin-remove-console";
 import themePreprocessorPlugin from "@pureadmin/theme";
-import { genScssMultipleScopeVars } from "@/layout/theme";
+import { genScssMultipleScopeVars } from "../src/layout/theme";
 
 export function getPluginsList(
   command: string,
